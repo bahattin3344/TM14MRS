@@ -1,15 +1,13 @@
 import Utility.BaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TM14MRS_5_6_7 extends BaseDriver {
+public class Bilgehan extends BaseDriver {
 
     @Test
     public void TM14MRS_5(){
