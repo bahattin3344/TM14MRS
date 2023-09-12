@@ -92,4 +92,28 @@ public class Bilgehan extends BaseDriver {
 
         Assert.assertTrue(driver.findElement(By.xpath("//td[text()='No matching records found']")).getText().contains("No matching"));
     }
+
+    @Test (groups = {"Regression", "PatientManagement"})
+    public void TM14MRS_8(){
+
+        driver.get("https://demo.openmrs.org/openmrs/login.htm");
+        Actions driverAksiyon = new Actions(driver);
+
+        WebElement usernameBox = driver.findElement(By.name("username"));
+        usernameBox.sendKeys("admin");
+
+        WebElement laboratoryLink = driver.findElement(By.id("Laboratory"));
+        laboratoryLink.click();
+
+        WebElement passwordBox = driver.findElement(By.id("password"));
+        passwordBox.sendKeys("Admin123", Keys.ENTER);
+
+        WebElement findPatientRecordButton = driver.findElement(By.id("coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension"));
+        findPatientRecordButton.click();
+
+        List<WebElement> patientsList = driver.findElements(By.xpath("//tbody[@role='alert']/tr"));
+        WebElement totalPatient = driver.findElement(By.id("patient-search-results-table_info"));
+
+        Assert.assertTrue(totalPatient.getText().contains(String.valueOf(patientsList.size())));
+    }
 }
