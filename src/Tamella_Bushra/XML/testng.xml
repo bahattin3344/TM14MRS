@@ -13,7 +13,7 @@
 
         <!--çalışcak classların yazıldığı bölüm-->
         <classes>
-            <class name="Tamella_Bushra.HataliGiris"> </class>
+            <class name="HataliGiris"> </class>
         </classes>
 
     </test>

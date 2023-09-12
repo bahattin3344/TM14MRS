@@ -1,5 +1,3 @@
-package Tamella_Bushra;
-
 import Utility.BaseDriver;
 import Utility.MyFunc;
 import org.openqa.selenium.By;
