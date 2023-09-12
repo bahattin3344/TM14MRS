@@ -3,6 +3,8 @@ import Utility.MyFunc;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -19,6 +21,7 @@ public class MasterClass extends BaseDriver {
 
     @Test(groups = {"Regression"})
     public void hKayitTesti() {
+        for(int i=0;i<2;i++){
         Actions aksiyonlar=new Actions(driver);
         WebElement registerP = driver.findElement(By.xpath("//i[@class='icon-user']"));
         aksiyonlar.moveToElement(registerP).click().build().perform();
@@ -111,7 +114,73 @@ public class MasterClass extends BaseDriver {
         WebElement onaylama2 = driver.findElement(By.xpath("//div[@class='float-sm-right']"));
         Assert.assertTrue(onaylama2.getText().contains("Patient ID"));
         MyFunc.Bekle(2);
+        driver.navigate().back();
+        driver.navigate().back();
 
+    }}
 
-    }
+@Test(groups = {"Smoke","PatientManagement"})
+    public void HSilme(){
+        WebElement hKaydı=driver.findElement(By.cssSelector("[id='coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension']"));
+        hKaydı.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='form-control']")));
+        WebElement arama=driver.findElement(By.cssSelector("[class='form-control']"));
+        arama.sendKeys("John Green");
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[class='odd'")));
+        WebElement hasta=driver.findElement(By.cssSelector("[class='odd'"));
+        hasta.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#org\\.openmrs\\.module\\.coreapps\\.deletePatient div > div.col-11.col-lg-10")));
+        WebElement delete=driver.findElement(By.cssSelector("#org\\.openmrs\\.module\\.coreapps\\.deletePatient div > div.col-11.col-lg-10"));
+        delete.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[id='delete-reason']")));
+        WebElement deleteReason=driver.findElement(By.cssSelector("[id='delete-reason']"));
+        deleteReason.sendKeys("YES");
+        MyFunc.Bekle(1);
+        WebElement btn=driver.findElement(By.cssSelector("#delete-patient-creation-dialog div.dialog-content > button.confirm.right"));
+        btn.click();
+        MyFunc.Bekle(2);
+}
+@Test(groups = {"Regression","PatientManagement"})
+    public void birlestirme(){
+        WebElement data=driver.findElement(By.cssSelector("[id='coreapps-datamanagement-homepageLink-coreapps-datamanagement-homepageLink-extension']"));
+        data.click();
+        MyFunc.Bekle(2);
+        WebElement merge=driver.findElement(By.cssSelector("[id='coreapps-mergePatientsHomepageLink-app']"));
+        merge.click();
+        MyFunc.Bekle(2);
+        WebElement h1=driver.findElement(By.cssSelector("[id='patient1-text']"));
+        h1.sendKeys("100KYC");
+        WebElement h2=driver.findElement(By.cssSelector("[id='patient2-text']"));
+        h2.sendKeys("100KXE");
+        MyFunc.Bekle(2);
+        WebElement btn=driver.findElement(By.cssSelector("[id='confirm-button']"));
+        btn.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[id='first-patient']")));
+        WebElement firstH=driver.findElement(By.cssSelector("[id='first-patient']"));
+        firstH.click();
+        WebElement confirmBtn=driver.findElement(By.cssSelector("[id='confirm-button']"));
+        confirmBtn.click();
+        MyFunc.Bekle(3);
+
+}
+
+@Test(groups = {"Regression","Appointment"})
+    public void Saat(){
+        WebElement app=driver.findElement(By.cssSelector("[id='appointmentschedulingui-homeAppLink-appointmentschedulingui-homeAppLink-extension']"));
+        app.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[id='appointmentschedulingui-manageAppointments-app']")));
+        WebElement manage=driver.findElement(By.cssSelector("[id='appointmentschedulingui-manageAppointments-app']"));
+        manage.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("patient-search")));
+        WebElement search=driver.findElement(By.cssSelector("patient-search"));
+        search.sendKeys("Yaşar Yaşamaz");
+        MyFunc.Bekle(2);
+        WebElement hBtn=driver.findElement(By.xpath("//*[@id=\"patient-search-results-table\"]/tbody/tr[1]"));
+        hBtn.click();
+        MyFunc.Bekle(2);
+        WebElement hata=driver.findElement(By.xpath("//*[@id=\"time-zone-warning\"]/div/div/p/text()"));
+        Assert.assertTrue(hata.getText().contains("Your computer is not set to the right time zone"));
+        MyFunc.Bekle(2);
+
+}
 }
