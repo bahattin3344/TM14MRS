@@ -3,19 +3,15 @@
 <suite name="mySuit">
 
     <test name="myTest1">
-
-        <groups>
-            <run>
-                <include name="Smoke Test"></include>
-            </run>
-        </groups>
-
-
         <!--çalışcak classların yazıldığı bölüm-->
         <classes>
-            <class name="HataliGiris"> </class>
+            <class name="HataliGiris"></class>
+            <class name="MasterClass"></class>
         </classes>
 
     </test>
+
+
+
 
 </suite>
