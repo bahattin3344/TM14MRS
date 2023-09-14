@@ -3,6 +3,7 @@
 <suite name="mySuit">
 
     <test name="myTest1">
+
         <!--çalışcak classların yazıldığı bölüm-->
         <classes>
             <class name="HataliGiris"></class>

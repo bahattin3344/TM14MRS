@@ -19,9 +19,10 @@ public class BaseDriver {
 
     public static WebDriver driver; // SingletonDriver method
     public static WebDriverWait wait;
+    public static Actions driverAksiyon;
 
     @BeforeClass
-    public void baslangicIslemleri(){
+    public  void baslangicIslemleri(){
 
         Logger logger= Logger.getLogger(""); // output yapılan logları al.
         logger.setLevel(Level.SEVERE); // sadece ERROR ları göster
@@ -31,6 +32,7 @@ public class BaseDriver {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20)); // 20 sn mühlet: sayfayı yükleme mühlet
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));  // 20 sn mühlet: elementi bulma mühleti
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        driverAksiyon=new Actions(driver);
        loginTesti();
 
     }
@@ -74,10 +76,10 @@ public class BaseDriver {
     }
 
 
-  //  @AfterClass
-   // public void bitisIslemleri(){ // tearDown
-    //    MyFunc.Bekle(5);
-     //   driver.quit();
-   // }
+    @AfterClass
+    public void bitisIslemleri(){ // tearDown
+        MyFunc.Bekle(5);
+         driver.quit();
+    }
 
 }

@@ -12,7 +12,7 @@ public class HataliGiris {
 
     @Test(groups = {"Smoke Test"},dataProvider = "UserData")
         public void hataliGirisTest(String username, String password){
-        WebDriver driver=new ChromeDriver();
+            WebDriver driver=new ChromeDriver();
             Actions aksiyonlar=new Actions(driver);
 
             driver.get("https://openmrs.org/");
@@ -33,15 +33,15 @@ public class HataliGiris {
 
             WebElement username1=driver.findElement(By.name("username"));
             username1.sendKeys(username+ Keys.ENTER);
-            MyFunc.Bekle(1);
+
 
             WebElement password1=driver.findElement(By.name("password"));
             password1.sendKeys(password+Keys.ENTER);
-            MyFunc.Bekle(1);
+
 
             WebElement logInB=driver.findElement(By.id("loginButton"));
             aksiyonlar.moveToElement(logInB).click().build().perform();
-            MyFunc.Bekle(1);
+
 
             WebElement onaylama=driver.findElement(By.id("sessionLocationError"));
             Assert.assertTrue(onaylama.getText().contains("You must choose a location!"));
@@ -53,7 +53,7 @@ public class HataliGiris {
 
             WebElement logIn2=driver.findElement(By.id("loginButton"));
             aksiyonlar.moveToElement(logIn2).click().build().perform();
-            MyFunc.Bekle(1);
+
 
             WebElement onaylama2=driver.findElement(By.id("error-message"));
             Assert.assertTrue(onaylama2.getText().contains("Invalid username/password. Please try again."));
